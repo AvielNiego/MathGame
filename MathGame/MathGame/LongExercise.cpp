@@ -35,6 +35,8 @@ int LongExercise::indexOf(int* a, int size, int value)
 			return i;
 		}
 	}
+
+	return -1;
 }
 
 bool LongExercise::isEnlargerAction(MathAction exerOperator)
@@ -86,12 +88,11 @@ int LongExercise::generateExerWithTwoNumbers(MathAction firstExerOperator, int &
 	case MINUS: 
 		generateMinus(randNum1, randNum2);
 		return randNum1 - randNum2;
-		break;
 	case DIV: 
 		generateDiv(randNum1, randNum2);
 		return randNum1 / randNum2;
-		break;
-	default: break;
+	default:
+		return -1;
 	}
 }
 
@@ -237,16 +238,16 @@ bool LongExercise::insertNumber(int number)
 	if (isHalfSolved)
 	{
 		variables[varPosition2] = number;
-		int result;
+		double result;
 
 		if (isMulDiv(firstExerOperator) || isPlusMinus(secondExerOperator))
 		{
-			int firstResult = calc(firstExerOperator, variables[0], variables[1]);
+			double firstResult = calc(firstExerOperator, variables[0], variables[1]);
 			result = calc(secondExerOperator, firstResult, variables[2]);
 		}
 		else
 		{
-			int firstResult = calc(firstExerOperator, variables[1], variables[2]);
+			double firstResult = calc(firstExerOperator, variables[1], variables[2]);
 			result = calc(secondExerOperator, variables[0], firstResult);
 		}
 
@@ -318,28 +319,95 @@ bool LongExercise::isLegitResult(double result)
 
 bool LongExercise::solveExersiceWithValAt2()
 {
+	MathAction firstAction = (isPlusMinus(firstExerOperator) ? MINUS : DIV);
+	double firstResult = calc(firstAction, variables[3], variables[0]);
+
+	double finalResult = reverseCalc(secondExerOperator, firstResult, variables[2]);
+
+	if (firstExerOperator == MINUS)
+	{
+		firstResult = firstResult * (-1);
+	}
+	if (firstExerOperator == DIV)
+	{
+		pow(finalResult, -1);
+	}
+
+	return isLegitResult(finalResult);
 }
 
 bool LongExercise::solveExersiceWithValAt3()
 {
+	MathAction firstAction = (isPlusMinus(firstExerOperator) ? MINUS : DIV);
+	double firstResult = calc(firstAction, variables[3], variables[0]);
+	
+	double finalResult = 0;
+	if (isPlusMinus(secondExerOperator))
+	{
+		switch (firstExerOperator)
+		{
+		case PLUS: 
+			finalResult = calc(MINUS, firstResult, variables[1]);
+			break;
+		case MINUS: 
+			finalResult = calc(PLUS, firstResult, variables[1]);
+			break;
+		case MUL: 
+			finalResult = calc(MINUS, firstResult, variables[1]);
+			break;
+		case DIV: 
+			finalResult = calc(MUL, firstResult, variables[1]) - 1;
+			break;
+		}
+
+		if (secondExerOperator == MINUS)
+		{
+			finalResult = firstResult * (-1);
+		}
+	}
+	else
+	{
+		switch (firstExerOperator)
+		{
+		case PLUS:
+			finalResult = calc(DIV, firstResult, variables[1]);
+			break;
+		case MINUS:
+			finalResult = calc(DIV, firstResult, variables[1] * (-1));
+			break;
+		case MUL:
+			finalResult = calc(DIV, firstResult, variables[1]);
+			break;
+		case DIV:
+			finalResult = calc(MUL, firstResult, variables[1]);
+			break;
+		}
+
+		if (secondExerOperator == DIV)
+		{
+			pow(finalResult, -1);
+		}
+	}
+
+	return isLegitResult(finalResult);
 }
 
 bool LongExercise::solveExersiceWithValAt4()
 {
-	int result;
+	double result;
 
 	if (isMulDiv(firstExerOperator) || isPlusMinus(secondExerOperator))
 	{
-		int firstResult = calc(firstExerOperator, variables[0], variables[1]);
+		double firstResult = calc(firstExerOperator, variables[0], variables[1]);
 		result = calc(secondExerOperator, firstResult, variables[2]);
 	}
 	else
 	{
-		int firstResult = calc(firstExerOperator, variables[1], variables[2]);
+		double firstResult = calc(firstExerOperator, variables[1], variables[2]);
 		result = calc(secondExerOperator, variables[0], firstResult);
 	}
 
-	return result == variables[3];
+	return isLegitResult(result);
 }
 
 string LongExercise::getVarString(int i)

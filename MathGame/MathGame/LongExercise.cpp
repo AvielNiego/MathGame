@@ -272,8 +272,10 @@ bool LongExercise::insertNumber(int number)
 			isLegitNumber = solveExersiceWithValAt1();
 			break;
 		case 1:
+			isLegitNumber = solveExersiceWithValAt2();
 			break;
 		case 2:
+			isLegitNumber = solveExersiceWithValAt3();
 			break;
 		case 3:
 			isLegitNumber = solveExersiceWithValAt4();

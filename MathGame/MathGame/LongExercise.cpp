@@ -7,7 +7,8 @@ void LongExercise::initVarPositions(int var1, int var2, int var3, int result)
 {
 	int ints[] = { var1, var2, var3, result };
 	int sortedInts[] = { var1, var2, var3, result };
-	sort(ints, ints + 4);
+	sort(sortedInts, sortedInts + 4);
+
 	varPosition1 = indexOf(ints, 4, sortedInts[0]);
 	varPosition2 = indexOf(ints, 4, sortedInts[1]);
 
@@ -160,7 +161,7 @@ LongExercise* LongExercise::generateExercise(int maximumNumber)
 		int randomResult = getRandomNumber();
 		int randNum3 = getRandomNumber();
 
-		int firstResult = (secondExerOperator == MathAction::DIV) ? randomResult * randNum3 : randomResult - randNum3;
+		int firstResult = (secondExerOperator == MathAction::DIV) ? randomResult * randNum3 : randomResult + randNum3;
 		int randNum1, randNum2;
 
 		generateExerWithTwoNumbersAndResult(firstExerOperator, firstResult, randNum1, randNum2);
@@ -412,7 +413,7 @@ bool LongExercise::solveExersiceWithValAt4()
 
 string LongExercise::getVarString(int i)
 {
-	return variables[i] == -1 ? StringUtils::toString(variables[i]) : "__";
+	return variables[i] != -1 ? StringUtils::toString(variables[i]) : "__";
 }
 
 string LongExercise::toExerciseString()

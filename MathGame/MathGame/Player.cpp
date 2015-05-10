@@ -4,6 +4,7 @@
 #include "Shot.h"
 #include "Exercise.h"
 #include "SmallExercise.h"
+#include "LongExercise.h"
 
 Direction::value Player::getKeyDirection(char keyPressed)
 {
@@ -188,7 +189,7 @@ void Player::initPlayerForNewLevel(int maximumNumber)
 	screen[locationRow][locationCol] = this;
 	printToScreen();
 
-	exercise = SmallExercise::generateExercise(maximumNumber);
+	exercise = LongExercise::generateExercise(maximumNumber);
 	isAlive = true;
 	isWon = false;
 	movingDir = Direction::STAY;

@@ -27,6 +27,7 @@ class Player : public GameEntities
 	Direction::value movingDir;
 	bool isWon;
 	bool isAlive;
+	int stack;
 
 	Exercise *exercise;
 	int life;
@@ -52,7 +53,7 @@ public:
 		return isAlive;
 	}
 
-
+	void addBullet();
 	void shot();
 	void moveToStartPoint();
 	void shotKill() override;
@@ -71,13 +72,9 @@ public:
 	}
 
 	virtual bool isEatenByPlayer() const { return false; }
-
 	virtual bool isEatPlayer() const { return false; }
-
 	virtual bool isDeadByShot() const { return true; }
-
 	virtual bool isFastCreature() const { return false; }
-
 	virtual void kill();
 
 	void printExtra()const;

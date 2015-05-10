@@ -257,8 +257,8 @@ bool LongExercise::insertNumber(int number)
 		}
 		else
 		{
-			double firstResult = calc(firstExerOperator, variables[1], variables[2]);
-			result = calc(secondExerOperator, variables[0], firstResult);
+			double firstResult = calc(secondExerOperator, variables[1], variables[2]);
+			result = calc(firstExerOperator, variables[0], firstResult);
 		}
 
 		if (result == variables[3])
@@ -304,7 +304,7 @@ bool LongExercise::insertNumber(int number)
 			return false;
 		}
 	}
-a}
+}
 
 bool LongExercise::solveExersiceWithValAt1()
 {
@@ -325,7 +325,7 @@ bool LongExercise::solveExersiceWithValAt1()
 bool LongExercise::isLegitResult(double result)
 {
 	double floor = std::floor(result);
-	return (result > 0 && result == floor);
+	return (result > 0 && result == floor && result < 22);
 }
 
 bool LongExercise::solveExersiceWithValAt2()

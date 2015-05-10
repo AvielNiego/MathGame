@@ -17,7 +17,7 @@ private:
 
 	static const int GAME_SCREEN_START_ROW = 3;
 	static const int BASE_DIFFICULTY_LEVEL = 10;
-	static const int MAX_LEVEL = 20;
+	static const int MAX_LEVEL = 40;
 	static const int MAX_ITERATIONS = 1500;
 
 	ScreenObject*** screen;
@@ -69,8 +69,7 @@ private:
 
 	int getDifficultyLevel()
 	{
-		return 22;
-//		return screenLevel + BASE_DIFFICULTY_LEVEL;
+		return screenLevel + BASE_DIFFICULTY_LEVEL;
 	}
 
 	void killScreenObjects();

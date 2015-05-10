@@ -87,10 +87,19 @@ void Player::printExtra() const
 	printExercise();
 }
 
+void Player::addBullet()
+{
+	stack++;
+}
+
 void Player::shot()
 {
-	Direction::value shotDirection = (movingDir == Direction::STAY ? Direction::UP : movingDir);
-	new Shot(screen, locationRow, locationCol, screenHight, screenLength, shotDirection);
+	if (stack > 0)
+	{
+		Direction::value shotDirection = (movingDir == Direction::STAY ? Direction::UP : movingDir);
+		new Shot(screen, locationRow, locationCol, screenHight, screenLength, shotDirection);
+		stack--;
+	}
 }
 
 void Player::moveToStartPoint()
@@ -147,12 +156,12 @@ void Player::move()
 			moveTo(movingDir);
 			if (exercise->insertNumber(numberEaten))
 			{
+				printExercise();
 				if (exercise->exerciseSolved())
 				{
 					isWon = true;
 					levelsWonCount++;
 				}
-
 			}
 			else
 			{
@@ -176,7 +185,7 @@ Player::Player(char playerSighn, char dirUp, char dirLeft, char dirDown, char di
 	GameEntities(screen, startLocationRow, startLocationCol, screenHight, screenLength),
 	playerSighn(playerSighn), dirUp(dirUp), dirLeft(dirLeft), dirDown(dirDown), dirRight(dirRight), 
 	isWon(false), isAlive(true), lifeRow(lifeRow), lifeCol(lifeCol), isEquationStraightenedWithLife(isEquationStraightenedWithLife), levelsWonCount(0),
-	movingDir(Direction::STAY), startLocationRow(startLocationRow), startLocationCol(startLocationCol), shotKey(shotKey)
+	movingDir(Direction::STAY), startLocationRow(startLocationRow), startLocationCol(startLocationCol), shotKey(shotKey), stack(5)
 {}
 
 void Player::initPlayerForNewLevel(int maximumNumber)
@@ -189,7 +198,15 @@ void Player::initPlayerForNewLevel(int maximumNumber)
 	screen[locationRow][locationCol] = this;
 	printToScreen();
 
-	exercise = LongExercise::generateExercise(maximumNumber);
+	if (maximumNumber < 21)
+	{
+		exercise = SmallExercise::generateExercise(maximumNumber);
+	}
+	else
+	{
+		exercise = LongExercise::generateExercise(maximumNumber);
+	}
+
 	isAlive = true;
 	isWon = false;
 	movingDir = Direction::STAY;

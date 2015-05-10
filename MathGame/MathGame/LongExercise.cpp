@@ -12,6 +12,15 @@ void LongExercise::initVarPositions(int var1, int var2, int var3, int result)
 	varPosition1 = indexOf(ints, 4, sortedInts[0]);
 	varPosition2 = indexOf(ints, 4, sortedInts[1]);
 
+	if (varPosition1 == varPosition2)
+	{
+		varPosition2++;
+	}
+	else if (varPosition1 > varPosition2)
+	{
+		swap(varPosition1, varPosition2);
+	}
+
 	variables[varPosition1] = -1;
 	variables[varPosition2] = -1;
 }
@@ -268,7 +277,7 @@ bool LongExercise::insertNumber(int number)
 		variables[varPosition1] = number;
 
 		bool isLegitNumber = false;
-		switch (varPosition1)
+		switch (varPosition2)
 		{
 		case 0:
 			isLegitNumber = solveExersiceWithValAt1();
@@ -295,7 +304,7 @@ bool LongExercise::insertNumber(int number)
 			return false;
 		}
 	}
-}
+a}
 
 bool LongExercise::solveExersiceWithValAt1()
 {
@@ -315,7 +324,8 @@ bool LongExercise::solveExersiceWithValAt1()
 
 bool LongExercise::isLegitResult(double result)
 {
-	return (result > 0 && result == std::floor(result));
+	double floor = std::floor(result);
+	return (result > 0 && result == floor);
 }
 
 bool LongExercise::solveExersiceWithValAt2()
@@ -404,8 +414,8 @@ bool LongExercise::solveExersiceWithValAt4()
 	}
 	else
 	{
-		double firstResult = calc(firstExerOperator, variables[1], variables[2]);
-		result = calc(secondExerOperator, variables[0], firstResult);
+		double firstResult = calc(secondExerOperator, variables[1], variables[2]);
+		result = calc(firstExerOperator, variables[0], firstResult);
 	}
 
 	return isLegitResult(result);

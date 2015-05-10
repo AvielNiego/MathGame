@@ -69,7 +69,8 @@ private:
 
 	int getDifficultyLevel()
 	{
-		return screenLevel + BASE_DIFFICULTY_LEVEL;
+		return 22;
+//		return screenLevel + BASE_DIFFICULTY_LEVEL;
 	}
 
 	void killScreenObjects();

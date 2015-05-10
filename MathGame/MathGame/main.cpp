@@ -45,8 +45,8 @@ using namespace std;
 int main(){
 	clear_screen();
 	hideCursor();
-	srand((unsigned int)time(NULL));
-	GameManager(*(new TheMathGame(22 ,80)), 100, 2).run();
+	//srand((unsigned int)time(NULL));
+	GameManager(*(new TheMathGame(22 ,80)), 150, 2).run();
 	return 0;
 }
 //==========================

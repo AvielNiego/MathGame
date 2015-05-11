@@ -198,6 +198,11 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 				player->inputKey(*key);
 			}
 			player->move();
+
+			if (iterationCounter % 200 == 0)
+			{
+				player->addBullet();
+			}
 		}
 	}
 }

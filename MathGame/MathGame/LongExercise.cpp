@@ -2,6 +2,7 @@
 
 #include "LongExercise.h"
 #include "StringUtils.h"
+#include "math.h"
 
 void LongExercise::initVarPositions(int var1, int var2, int var3, int result)
 {
@@ -51,7 +52,7 @@ int LongExercise::indexOf(int* a, int size, int value)
 
 bool LongExercise::isEnlargerAction(MathAction exerOperator)
 {
-	return exerOperator == MathAction::PLUS || exerOperator == MathAction::MUL;
+	return exerOperator == PLUS || exerOperator == MUL;
 }
 
 
@@ -62,13 +63,13 @@ int LongExercise::getRandomNumber()
 
 bool LongExercise::isPlusMinus(MathAction exerOperator)
 {
-	return exerOperator == MathAction::PLUS || exerOperator == MathAction::MINUS;
+	return exerOperator == PLUS || exerOperator == MINUS;
 }
 
 
 bool LongExercise::isMulDiv(MathAction firstExerOperator)
 {
-	return firstExerOperator == MathAction::MUL || firstExerOperator == MathAction::DIV;
+	return firstExerOperator == MUL || firstExerOperator == DIV;
 }
 
 void LongExercise::generateDiv(int &randNum1, int &randNum2)
@@ -198,7 +199,7 @@ LongExercise* LongExercise::generateExercise()
 		int randomResult = getRandomNumber();
 		int randNum3 = getRandomNumber();
 
-		int firstResult = (secondExerOperator == MathAction::DIV) ? randomResult * randNum3 : randomResult + randNum3;
+		int firstResult = (secondExerOperator == DIV) ? randomResult * randNum3 : randomResult + randNum3;
 		int randNum1, randNum2;
 
 		generateExerWithTwoNumbersAndResult(firstExerOperator, firstResult, randNum1, randNum2);
@@ -218,7 +219,7 @@ LongExercise* LongExercise::generateExercise()
 			return new LongExercise(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3, result);
 		}
 
-		if (firstExerOperator == MathAction::MINUS)
+		if (firstExerOperator == MINUS)
 		{
 			int randResult = getRandomNumber();
 			int randNum2, randNum3;
@@ -227,7 +228,7 @@ LongExercise* LongExercise::generateExercise()
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 double LongExercise::calc(MathAction exerOperator, double var1, double var2)
@@ -356,7 +357,7 @@ bool LongExercise::solveExersiceWithValAt1()
 
 bool LongExercise::isLegitResult(double result)
 {
-	double floor = std::floor(result);
+	int floor = (int)result;
 	return (result > 0 && result == floor && result < 22);
 }
 

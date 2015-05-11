@@ -5,6 +5,11 @@
 
 #include "MathAction.h"
 #include <string>
+#include "Exercise.h"
+#include <iostream>
+#include "io_utils.h"
+#include "StringUtils.h"
+#include <string>
 
 using namespace std;
 

@@ -14,7 +14,7 @@ public:
 
 	virtual void move() =0;
 
-	void shotKill() override;
+	void shotKill();
 };
 
 #endif

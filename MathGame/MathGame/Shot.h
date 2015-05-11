@@ -16,13 +16,13 @@ public:
 	Shot(ScreenObject*** screen, int locationRow, int locationCol, int screenHight, int screenLength, Direction::value movingDirection);
 	~Shot();
 
-	void move() override;
-	string getScreenString() const override;
-	bool isEatenByPlayer() const override;
-	bool isEatPlayer() const override;
-	bool isDeadByShot() const override;
-	bool isFastCreature() const override;
-	void kill() override;
+	void move();
+	string getScreenString() const;
+	bool isEatenByPlayer() const;
+	bool isEatPlayer() const;
+	bool isDeadByShot() const;
+	bool isFastCreature() const;
+	void kill();
 };
 
 #endif

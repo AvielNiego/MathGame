@@ -38,14 +38,14 @@ public:
 	static LongExercise* generateExercise();
 	static double calc(MathAction exerOperator, double var1, double var2);
 	static double reverseCalc(MathAction exerOperator, double var1, double var2);
-	bool insertNumber(int number) override;
+	bool insertNumber(int number);
 	bool solveExersiceWithValAt1();
 	bool solveExersiceWithValAt2();
 	bool solveExersiceWithValAt3();
 	bool solveExersiceWithValAt4();
 	bool isLegitResult(double result);
 	string getVarString(int i);
-	virtual string toExerciseString() override;
+	virtual string toExerciseString();
 	char getOperatorChar(MathAction exerOperator);
 };
 

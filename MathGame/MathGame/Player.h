@@ -32,8 +32,8 @@ class Player : public GameEntities
 	Exercise *exercise;
 	int life;
 
-	Player(Player&& other);
-	Player& operator=(Player&& other);
+	Player(Player& other);
+	Player& operator=(Player& other);
 
 public:
 	Player(char playerSighn, char dirUp, char dirLeft, char dirDown, char dirRight, char shotKey,
@@ -56,7 +56,7 @@ public:
 	void addBullet();
 	void shot();
 	void moveToStartPoint();
-	void shotKill() override;
+	void shotKill();
 	void inputKey(char keyPressed);
 
 	void move();

@@ -36,7 +36,7 @@ SmallExercise* SmallExercise::generateExercise(int maximumNumber)
 		varPosition = rand() % 2 + 2;
 		return new SmallExercise(randNum2 * randNum1, randNum1, randNum2, varPosition, exerOperator);
 	default:
-		return nullptr;
+		return NULL;
 	}
 }
 

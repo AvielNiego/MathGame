@@ -34,9 +34,10 @@ public:
 	static int generateExerWithTwoNumbers(MathAction firstExerOperator, int &randNum1, int &randNum2);
 	static int getRandomNumber(int firstResult);
 	static void generateExerWithTwoNumbersAndResult(MathAction firstExerOperator, int firstResult, int& randNum1, int& randNum2);
-	static LongExercise* generateExercise(int maximumNumber);
-	double calc(MathAction exerOperator, double var1, double var2);
-	double reverseCalc(MathAction exerOperator, double var1, double var2);
+	static double calc(int randNum1, MathAction firstExerOperator, int randNum2, MathAction secondExerOperator, int randNum3);
+	static LongExercise* generateExercise();
+	static double calc(MathAction exerOperator, double var1, double var2);
+	static double reverseCalc(MathAction exerOperator, double var1, double var2);
 	bool insertNumber(int number) override;
 	bool solveExersiceWithValAt1();
 	bool solveExersiceWithValAt2();

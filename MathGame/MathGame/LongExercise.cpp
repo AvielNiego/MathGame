@@ -148,14 +148,38 @@ void LongExercise::generateExerWithTwoNumbersAndResult(MathAction exerOperator, 
 	}
 }
 
-LongExercise* LongExercise::generateExercise(int maximumNumber)
+
+double LongExercise::calc(int randNum1, MathAction firstExerOperator, int randNum2, MathAction secondExerOperator, int randNum3)
+{
+	double result;
+	if (isMulDiv(firstExerOperator) || isPlusMinus(secondExerOperator))
+	{
+		double firstResult = calc(firstExerOperator, randNum1, randNum2);
+		result = calc(secondExerOperator, firstResult, randNum3);
+	}
+	else
+	{
+		double firstResult = calc(secondExerOperator, randNum2, randNum3);
+		result = calc(firstExerOperator, randNum1, firstResult);
+	}
+
+	return result;
+}
+
+LongExercise* LongExercise::generateExercise()
 {
 	MathAction firstExerOperator = generateRandomMathOperator();
 	MathAction secondExerOperator = generateRandomMathOperator();
 
 	if (isEnlargerAction(firstExerOperator) && isEnlargerAction(secondExerOperator))
 	{
-		return new LongExercise(getRandomNumber(), firstExerOperator, getRandomNumber(), secondExerOperator, getRandomNumber(), -1);
+		int randNum1 = getRandomNumber();
+		int randNum2 = getRandomNumber();
+		int randNum3 = getRandomNumber();
+
+		double result = calc(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3);
+
+		return new LongExercise(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3, result);
 	}
 	
 	if (isMulDiv(firstExerOperator) || isPlusMinus(secondExerOperator))
@@ -164,7 +188,11 @@ LongExercise* LongExercise::generateExercise(int maximumNumber)
 		{
 			int randNum1, randNum2;
 			generateExerWithTwoNumbers(firstExerOperator, randNum1, randNum2);
-			return new LongExercise(randNum1, firstExerOperator, randNum2, secondExerOperator, getRandomNumber(), -1);
+			int randNum3 = getRandomNumber();
+
+			double result = calc(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3);
+
+			return new LongExercise(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3, result);
 		}
 		
 		int randomResult = getRandomNumber();
@@ -181,9 +209,13 @@ LongExercise* LongExercise::generateExercise(int maximumNumber)
 	{
 		if (isEnlargerAction(firstExerOperator))
 		{
-			int randNum1, randNum2;
-			generateExerWithTwoNumbers(firstExerOperator, randNum1, randNum2);
-			return new LongExercise(getRandomNumber(), firstExerOperator, randNum1, secondExerOperator, randNum2, -1);
+			int randNum2, randNum3;
+			generateExerWithTwoNumbers(firstExerOperator, randNum2, randNum3);
+			int randNum1 = getRandomNumber();
+
+			double result = calc(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3);
+
+			return new LongExercise(randNum1, firstExerOperator, randNum2, secondExerOperator, randNum3, result);
 		}
 
 		if (firstExerOperator == MathAction::MINUS)

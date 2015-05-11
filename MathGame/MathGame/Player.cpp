@@ -204,7 +204,7 @@ void Player::initPlayerForNewLevel(int maximumNumber)
 	}
 	else
 	{
-		exercise = LongExercise::generateExercise(maximumNumber);
+		exercise = LongExercise::generateExercise();
 	}
 
 	isAlive = true;

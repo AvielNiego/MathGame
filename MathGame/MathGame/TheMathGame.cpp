@@ -6,6 +6,10 @@
 #include "NumberScreenObject.h"
 #include "TheMathGame.h"
 #include "OtonomicEntities.h"
+#include "ColFlayer.h"
+#include "RowFlayer.h"
+#include "NumberEater.h"
+#include "Shot.h"
 
 
 TheMathGame::~TheMathGame()
@@ -73,6 +77,15 @@ bool TheMathGame::areAllPlayersDead() const
 	return true;
 }
 
+void TheMathGame::createCreatures()
+{
+	new NumberEater(screen, 19, 10, screenHight, screenLength);
+//	new RowFlayer(screen, 20, 30, screenHight, screenLength, Direction::RIGHT);
+//	new RowFlayer(screen, 15, 50, screenHight, screenLength, Direction::LEFT);
+//	new ColFlayer(screen, 20, 45, screenHight, screenLength, Direction::UP);
+//	new ColFlayer(screen, 15, 55, screenHight, screenLength, Direction::UP);
+}
+
 void TheMathGame::initGame()
 {
 	players->clear();
@@ -117,6 +130,7 @@ void TheMathGame::startLevel()
 
 	drawBorder();
 	initPlayers();
+	createCreatures();
 	iterationCounter = 0;
 }
 
@@ -132,16 +146,23 @@ void TheMathGame::moveOtonomicObjects(bool moveFastObjectsOnly)
 
 			if (otonomicEntity != NULL)
 			{
-				if (moveFastObjectsOnly)
+				if (otonomicEntity->is_dead())
 				{
-					if (otonomicEntity->isFastCreature())
-					{
-						otonomicEntitiesToMove->push_front(otonomicEntity);
-					}
+					delete otonomicEntity;
 				}
 				else
 				{
-					otonomicEntitiesToMove->push_front(otonomicEntity);
+					if (moveFastObjectsOnly)
+					{
+						if (otonomicEntity->isFastCreature())
+						{
+							otonomicEntitiesToMove->push_front(otonomicEntity);
+						}
+					}
+					else
+					{
+						otonomicEntitiesToMove->push_front(otonomicEntity);
+					}
 				}
 			}
 		}
@@ -151,7 +172,15 @@ void TheMathGame::moveOtonomicObjects(bool moveFastObjectsOnly)
 	for (list<OtonomicEntities*>::iterator it = otonomicEntitiesToMove->begin(); it != otonomicEntitiesToMove->end(); ++it)
 	{
 		OtonomicEntities *otonomicEntity = *it;
-		otonomicEntity->move();
+//		if (otonomicEntity->is_dead())
+//		{
+//			otonomicEntitiesToMove->remove(otonomicEntity);
+//			delete otonomicEntity;
+//		}
+//		else
+//		{
+			otonomicEntity->move();
+//		}
 	}
 
 	delete otonomicEntitiesToMove;
@@ -163,10 +192,14 @@ void TheMathGame::killScreenObjects()
 	{
 		for (int j = 0; j < screenLength; j++)
 		{
-			Player* player = dynamic_cast<Player*>(screen[i][j]);
-			if (player == NULL)
+			ScreenObject* screen_object = screen[i][j];
+			if (screen_object != NULL)
 			{
-				delete screen[i][j];
+				Player* player = dynamic_cast<Player*>(screen_object);
+				if (player == NULL)
+				{
+					delete screen_object;
+				}
 			}
 		}
 	}
@@ -183,7 +216,10 @@ void TheMathGame::initPlayers()
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
-	locateNewNumber();
+	if (iterationCounter < 5)
+	{
+		locateNewNumber();
+	}
 	iterationCounter++;
 	
 	moveOtonomicObjects(false);

@@ -16,6 +16,7 @@ using namespace std;
 class Player : public GameEntities
 {
 	static const int START_LIFE = 3;
+	static const int START_STACK = 5;
 	static const char LIFE_CHAR = 'X';
 	char playerSighn;
 	char dirUp, dirLeft, dirDown, dirRight, shotKey;
@@ -31,7 +32,6 @@ class Player : public GameEntities
 
 	Exercise *exercise;
 	int life;
-
 	Player(Player& other);
 	Player& operator=(Player& other);
 
@@ -56,7 +56,7 @@ public:
 	void addBullet();
 	void shot();
 	void moveToStartPoint();
-	void shotKill();
+	void respawnKill();
 	void inputKey(char keyPressed);
 
 	void move();

@@ -23,7 +23,7 @@ public:
 	virtual bool isDeadByShot()const = 0;
 	virtual bool isFastCreature()const = 0;
 	virtual void kill() = 0;
-	virtual void shotKill() =0;
+	void respawnKill();
 
 protected:
 	ScreenObject* getObjectAt(Direction::value direction);

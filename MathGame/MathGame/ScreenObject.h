@@ -29,6 +29,16 @@ public:
 	virtual string getScreenString()const=0;
 
 
+	int getLocationRow() const
+	{
+		return locationRow;
+	}
+
+	int getLocationCol() const
+	{
+		return locationCol;
+	}
+
 	virtual void removeFromScreen();
 	virtual void cleanFromScreen()const;
 	void printToScreen()const;

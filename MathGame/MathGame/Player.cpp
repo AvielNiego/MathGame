@@ -108,6 +108,7 @@ void Player::moveToStartPoint()
 	if (dynamic_cast<Player*>(screen[startLocationRow][startLocationCol]) == NULL)
 	{
 		cleanFromScreen();
+		screen[locationRow][locationCol] = NULL;
 		delete screen[startLocationRow][startLocationCol];
 		screen[startLocationRow][startLocationCol] = this;
 		locationCol = startLocationCol;
@@ -116,7 +117,7 @@ void Player::moveToStartPoint()
 	}
 }
 
-void Player::shotKill()
+void Player::respawnKill()
 {
 	movingDir = Direction::STAY;
 	kill();
@@ -175,7 +176,7 @@ void Player::move()
 			if (shotBeside != NULL)
 			{
 				shotBeside->kill();
-				shotKill();
+				respawnKill();
 			}
 		}
 	}
@@ -185,7 +186,7 @@ Player::Player(char playerSighn, char dirUp, char dirLeft, char dirDown, char di
 	GameEntities(screen, startLocationRow, startLocationCol, screenHight, screenLength),
 	playerSighn(playerSighn), dirUp(dirUp), dirLeft(dirLeft), dirDown(dirDown), dirRight(dirRight), 
 	isWon(false), isAlive(true), lifeRow(lifeRow), lifeCol(lifeCol), isEquationStraightenedWithLife(isEquationStraightenedWithLife), levelsWonCount(0),
-	movingDir(Direction::STAY), startLocationRow(startLocationRow), startLocationCol(startLocationCol), shotKey(shotKey), stack(5)
+	movingDir(Direction::STAY), startLocationRow(startLocationRow), startLocationCol(startLocationCol), shotKey(shotKey), stack(START_STACK)
 {}
 
 void Player::initPlayerForNewLevel(int maximumNumber)
@@ -209,6 +210,7 @@ void Player::initPlayerForNewLevel(int maximumNumber)
 
 	isAlive = true;
 	isWon = false;
+	stack = START_STACK;
 	movingDir = Direction::STAY;
 	life = START_LIFE;
 	printLife();

@@ -56,6 +56,7 @@ public:
 	bool hasWinner() const;
 
 	bool areAllPlayersDead() const;
+	void createCreatures();
 
 	virtual bool hasNextLevel()const{ return screenLevel < MAX_LEVEL; }
 

@@ -2,8 +2,8 @@
 
 #include "OtonomicEntities.h"
 
-void OtonomicEntities::shotKill()
-{
-	kill();
-}
+OtonomicEntities::OtonomicEntities(ScreenObject*** screen, int locationRow, int locationCol, int screenHight, int screenLength) : 
+GameEntities(screen, locationRow, locationCol, screenHight, screenLength), isDead(false)
+{}
+
 // END of NEW CODE EX1

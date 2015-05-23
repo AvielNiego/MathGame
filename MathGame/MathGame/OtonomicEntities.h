@@ -7,14 +7,13 @@
 class OtonomicEntities :
 	public GameEntities
 {
+protected:
+	bool isDead;
 public:
-	OtonomicEntities(ScreenObject*** screen, int locationRow, int locationCol, int screenHight, int screenLength)
-		: GameEntities(screen, locationRow, locationCol, screenHight, screenLength)
-	{}
+	OtonomicEntities(ScreenObject*** screen, int locationRow, int locationCol, int screenHight, int screenLength);
 
 	virtual void move() =0;
-
-	void shotKill();
+	bool is_dead(){ return isDead; }
 };
 
 #endif

@@ -3,6 +3,11 @@
 #include "GameEntities.h"
 #include "Direction.h"
 
+void GameEntities::respawnKill()
+{
+	kill();
+}
+
 ScreenObject* GameEntities::getObjectAt(Direction::value direction)
 {
 	switch (direction)

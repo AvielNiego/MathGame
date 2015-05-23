@@ -31,7 +31,7 @@ void Shot::move()
 
 			if (gameEntityBeside != NULL && gameEntityBeside->isDeadByShot())
 			{
-				gameEntityBeside->shotKill();
+				gameEntityBeside->respawnKill();
 			}
 		}
 		kill();
@@ -71,6 +71,7 @@ void Shot::kill()
 {
 	cleanFromScreen();
 	removeFromScreen();
+	isDead = true;
 }
 
 // END of NEW CODE EX1

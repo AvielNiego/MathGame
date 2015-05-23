@@ -78,21 +78,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ColFlayer.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="Creature.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Exercise.h" />
+    <ClInclude Include="Flayer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="io_utils.h" />
     <ClInclude Include="ISpecificGame.h" />
     <ClInclude Include="LongExercise.h" />
     <ClInclude Include="MathAction.h" />
     <ClInclude Include="GameEntities.h" />
+    <ClInclude Include="NumberEater.h" />
     <ClInclude Include="NumberScreenObject.h" />
     <ClInclude Include="OtonomicEntities.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="RowFlayer.h" />
     <ClInclude Include="ScreenObject.h" />
     <ClInclude Include="Shot.h" />
     <ClInclude Include="SmallExercise.h" />
@@ -100,14 +105,20 @@
     <ClInclude Include="TheMathGame.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColFlayer.cpp" />
+    <ClCompile Include="Creature.cpp" />
+    <ClCompile Include="Direction.cpp" />
+    <ClCompile Include="Flayer.cpp" />
     <ClCompile Include="GameEntities.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="io_utils.cpp" />
     <ClCompile Include="LongExercise.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NumberEater.cpp" />
     <ClCompile Include="NumberScreenObject.cpp" />
     <ClCompile Include="OtonomicEntities.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RowFlayer.cpp" />
     <ClCompile Include="ScreenObject.cpp" />
     <ClCompile Include="Shot.cpp" />
     <ClCompile Include="SmallExercise.cpp" />

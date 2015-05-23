@@ -34,6 +34,8 @@ public:
 		LEFT,
 		STAY
 	};
+
+	static Direction::value getOppositeDirection(Direction::value dir);
 };
 
 #endif

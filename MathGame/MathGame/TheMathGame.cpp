@@ -80,10 +80,11 @@ bool TheMathGame::areAllPlayersDead() const
 void TheMathGame::createCreatures()
 {
 	new NumberEater(screen, 19, 10, screenHight, screenLength);
-//	new RowFlayer(screen, 20, 30, screenHight, screenLength, Direction::RIGHT);
-//	new RowFlayer(screen, 15, 50, screenHight, screenLength, Direction::LEFT);
-//	new ColFlayer(screen, 20, 45, screenHight, screenLength, Direction::UP);
-//	new ColFlayer(screen, 15, 55, screenHight, screenLength, Direction::UP);
+	new NumberEater(screen, 19, 70, screenHight, screenLength);
+	new RowFlayer(screen, 20, 30, screenHight, screenLength, Direction::RIGHT);
+	new RowFlayer(screen, 15, 50, screenHight, screenLength, Direction::LEFT);
+	new ColFlayer(screen, 20, 45, screenHight, screenLength, Direction::UP);
+	new ColFlayer(screen, 15, 55, screenHight, screenLength, Direction::UP);
 }
 
 void TheMathGame::initGame()
@@ -134,6 +135,38 @@ void TheMathGame::startLevel()
 	iterationCounter = 0;
 }
 
+void TheMathGame::deleteDeadShots()
+{
+	for (int i = 0; i < screenHight; i++)
+	{
+		for (int j = 0; j < screenLength; j++)
+		{
+			Shot* shot = dynamic_cast<Shot*>(screen[i][j]);
+			if (shot != NULL && shot->is_dead())
+			{
+				delete shot;
+			}
+		}
+	}
+}
+
+void TheMathGame::pushEntity(list<OtonomicEntities*>* otonomicEntitiesToMove, OtonomicEntities*& otonomicEntity)
+{
+	Shot* shot = dynamic_cast<Shot*>(otonomicEntity);
+	if (shot != NULL)
+	{
+		Shot* shotBeside = dynamic_cast<Shot*>(shot->getObjectAt(shot->getMovingDirection()));
+		if (shotBeside != NULL && shotBeside->getMovingDirection() == shot->getMovingDirection())
+		{
+			otonomicEntitiesToMove->push_back(otonomicEntity);
+		}
+	}
+	else
+	{		
+		otonomicEntitiesToMove->push_front(otonomicEntity);
+	}
+}
+
 void TheMathGame::moveOtonomicObjects(bool moveFastObjectsOnly)
 {
 	list<OtonomicEntities*> *otonomicEntitiesToMove = new list<OtonomicEntities*>;
@@ -156,12 +189,12 @@ void TheMathGame::moveOtonomicObjects(bool moveFastObjectsOnly)
 					{
 						if (otonomicEntity->isFastCreature())
 						{
-							otonomicEntitiesToMove->push_front(otonomicEntity);
+							pushEntity(otonomicEntitiesToMove, otonomicEntity);
 						}
 					}
 					else
 					{
-						otonomicEntitiesToMove->push_front(otonomicEntity);
+						pushEntity(otonomicEntitiesToMove, otonomicEntity);
 					}
 				}
 			}
@@ -172,16 +205,9 @@ void TheMathGame::moveOtonomicObjects(bool moveFastObjectsOnly)
 	for (list<OtonomicEntities*>::iterator it = otonomicEntitiesToMove->begin(); it != otonomicEntitiesToMove->end(); ++it)
 	{
 		OtonomicEntities *otonomicEntity = *it;
-//		if (otonomicEntity->is_dead())
-//		{
-//			otonomicEntitiesToMove->remove(otonomicEntity);
-//			delete otonomicEntity;
-//		}
-//		else
-//		{
-			otonomicEntity->move();
-//		}
+		otonomicEntity->move();
 	}
+	deleteDeadShots();
 
 	delete otonomicEntitiesToMove;
 }
@@ -216,10 +242,7 @@ void TheMathGame::initPlayers()
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
-	if (iterationCounter < 5)
-	{
-		locateNewNumber();
-	}
+	locateNewNumber();
 	iterationCounter++;
 	
 	moveOtonomicObjects(false);

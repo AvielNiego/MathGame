@@ -22,6 +22,7 @@ void Shot::move()
 	{
 		moveTo(movingDirection);
 	}
+//	else if (dynamic_cast<Shot*>(screenObjectBeside) == NULL || dynamic_cast<Shot*>(screenObjectBeside)->movingDirection != movingDirection*/)
 	else
 	{
 		// If screenObjectBeside is not a number, the function won't do nothing

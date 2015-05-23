@@ -1,6 +1,7 @@
 #include "Flayer.h"
 #include "Player.h"
 #include "Shot.h"
+#include "NumberEater.h"
 
 void Flayer::move()
 {
@@ -12,13 +13,13 @@ void Flayer::move()
 	}
 	else
 	{
-		// If screenObjectBeside is not a number, the function won't do nothing
 		if (eatNumber(screenObjectBeside) == -1)
 		{
 			Player* playerBeside = dynamic_cast<Player*>(screenObjectBeside);
 			if (playerBeside != NULL)
 			{
 				playerBeside->respawnKill();
+				moveTo(movingDir);
 			}
 			else
 			{
@@ -26,9 +27,18 @@ void Flayer::move()
 				if (shotBeside != NULL)
 				{
 					shotBeside->kill();
+					moveTo(movingDir);
 				}
 				else
 				{
+					NumberEater* number_eater = dynamic_cast<NumberEater*>(screenObjectBeside);
+					if (number_eater != NULL)
+					{
+						number_eater->kill();
+						moveTo(movingDir);
+						return;
+					}
+
 					Creature* creatureBeside = dynamic_cast<Creature*>(screenObjectBeside);
 					if (creatureBeside != NULL)
 					{

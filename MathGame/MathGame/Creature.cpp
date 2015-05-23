@@ -8,6 +8,7 @@ Creature::~Creature()
 
 void Creature::kill()
 {
+	cleanFromScreen();
 	removeFromScreen();
 	delete this;
 }

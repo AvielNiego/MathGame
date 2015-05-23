@@ -8,7 +8,7 @@ void GameEntities::respawnKill()
 	kill();
 }
 
-ScreenObject* GameEntities::getObjectAt(Direction::value direction)
+ScreenObject* GameEntities::getObjectAt(Direction::value direction) const
 {
 	switch (direction)
 	{

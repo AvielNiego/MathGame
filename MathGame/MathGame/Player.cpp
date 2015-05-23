@@ -5,6 +5,8 @@
 #include "Exercise.h"
 #include "SmallExercise.h"
 #include "LongExercise.h"
+#include "Creature.h"
+#include "NumberEater.h"
 
 Direction::value Player::getKeyDirection(char keyPressed)
 {
@@ -173,10 +175,23 @@ void Player::move()
 		{
 			// If the object beside is otonomicObject
 			Shot* shotBeside = dynamic_cast<Shot*>(screenObjectBeside);
+			Creature* creatureBeside = dynamic_cast<Creature*>(screenObjectBeside);
 			if (shotBeside != NULL)
 			{
 				shotBeside->kill();
 				respawnKill();
+			}
+			else if (creatureBeside != NULL)
+			{
+				if (dynamic_cast<NumberEater*>(screenObjectBeside) != NULL)
+				{
+					moveTo(movingDir);
+					creatureBeside->kill();
+				}
+				else
+				{
+					kill();
+				}
 			}
 		}
 	}

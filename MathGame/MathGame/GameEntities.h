@@ -24,9 +24,9 @@ public:
 	virtual bool isFastCreature()const = 0;
 	virtual void kill() = 0;
 	void respawnKill();
+	ScreenObject* getObjectAt(Direction::value direction) const;
 
 protected:
-	ScreenObject* getObjectAt(Direction::value direction);
 	int eatNumber(ScreenObject* screenObjectBeside);
 	void moveTo(Direction::value directionToMove);
 };

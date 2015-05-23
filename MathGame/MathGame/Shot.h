@@ -10,11 +10,16 @@ class Shot :
 {
 	static const char SHOT_CHARACTER = '*';
 	
-	const Direction::value movingDirection;
+	Direction::value movingDirection;
 
 public:
 	Shot(ScreenObject*** screen, int locationRow, int locationCol, int screenHight, int screenLength, Direction::value movingDirection);
 	~Shot();
+
+	Direction::value getMovingDirection() const
+	{
+		return movingDirection;
+	}
 
 	void move();
 	string getScreenString() const;

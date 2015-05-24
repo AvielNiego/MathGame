@@ -29,12 +29,12 @@ public:
 	virtual string getScreenString()const=0;
 
 
-	int getLocationRow() const
+	int getLocationRow()
 	{
 		return locationRow;
 	}
 
-	int getLocationCol() const
+	int getLocationCol()
 	{
 		return locationCol;
 	}

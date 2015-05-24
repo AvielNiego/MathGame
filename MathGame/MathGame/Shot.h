@@ -21,13 +21,13 @@ public:
 		return movingDirection;
 	}
 
+
 	void move();
 	string getScreenString() const;
 	bool isEatenByPlayer() const;
 	bool isEatPlayer() const;
 	bool isDeadByShot() const;
 	bool isFastCreature() const;
-	void kill();
 };
 
 #endif

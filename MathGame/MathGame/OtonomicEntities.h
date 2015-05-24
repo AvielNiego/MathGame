@@ -14,6 +14,8 @@ public:
 
 	virtual void move() =0;
 	bool is_dead(){ return isDead; }
+
+	void kill();
 };
 
 #endif

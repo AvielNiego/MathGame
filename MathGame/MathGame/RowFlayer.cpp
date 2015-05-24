@@ -1,3 +1,5 @@
+//NEW CODE EX3, author=Aviel Niego 203839170, date=<2015-05-24>
+
 #include "RowFlayer.h"
 #include "Player.h"
 #include "Shot.h"
@@ -36,3 +38,4 @@ bool RowFlayer::isFastCreature() const
 	return true;
 }
 
+// END of NEW CODE EX3

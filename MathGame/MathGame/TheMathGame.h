@@ -63,7 +63,6 @@ public:
 	virtual bool hasNextLevel()const{ return screenLevel < MAX_LEVEL; }
 
 	virtual void startLevel();
-	void deleteDeadShots();
 	void pushEntity(list<OtonomicEntities*>* otonomicEntitiesToMove, OtonomicEntities*& otonomicEntity);
 	void moveOtonomicObjects(bool moveFastObjectsOnly);
 	virtual void doIteration(const list<char>& keyHits);

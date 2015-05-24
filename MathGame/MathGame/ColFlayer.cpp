@@ -1,3 +1,5 @@
+//NEW CODE EX3, author=Aviel Niego 203839170, date=<2015-05-24>
+
 #include "ColFlayer.h"
 
 
@@ -34,3 +36,5 @@ bool ColFlayer::isFastCreature() const
 {
 	return false;
 }
+
+// END of NEW CODE EX3

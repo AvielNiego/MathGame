@@ -6,4 +6,11 @@ OtonomicEntities::OtonomicEntities(ScreenObject*** screen, int locationRow, int 
 GameEntities(screen, locationRow, locationCol, screenHight, screenLength), isDead(false)
 {}
 
+void OtonomicEntities::kill()
+{
+	cleanFromScreen();
+	removeFromScreen();
+	isDead = true;
+}
+
 // END of NEW CODE EX1

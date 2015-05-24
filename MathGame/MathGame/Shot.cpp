@@ -68,11 +68,4 @@ bool Shot::isFastCreature() const
 	return true;
 }
 
-void Shot::kill()
-{
-	cleanFromScreen();
-	removeFromScreen();
-	isDead = true;
-}
-
 // END of NEW CODE EX1

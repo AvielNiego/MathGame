@@ -1,3 +1,5 @@
+//NEW CODE EX3, author=Aviel Niego 203839170, date=<2015-05-24>
+
 #include "Flayer.h"
 #include "Player.h"
 #include "Shot.h"
@@ -56,3 +58,4 @@ void Flayer::move()
 		}
 	}
 }
+	// END of NEW CODE EX3

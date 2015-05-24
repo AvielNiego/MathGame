@@ -56,6 +56,10 @@ void Flayer::move()
 				}
 			}
 		}
+		else
+		{
+			moveTo(movingDir);
+		}
 	}
 }
 	// END of NEW CODE EX3

@@ -84,7 +84,7 @@ void TheMathGame::createCreatures()
 	new RowFlayer(screen, 20, 30, screenHight, screenLength, Direction::RIGHT);
 	new RowFlayer(screen, 15, 50, screenHight, screenLength, Direction::LEFT);
 	new ColFlayer(screen, 20, 45, screenHight, screenLength, Direction::UP);
-	new ColFlayer(screen, 15, 55, screenHight, screenLength, Direction::UP);
+	new ColFlayer(screen, 15, 55, screenHight, screenLength, Direction::DOWN);
 }
 
 void TheMathGame::initGame()
